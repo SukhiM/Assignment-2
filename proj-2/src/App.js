@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
 
+const cardImgs = [
+  {"src": "/img/chibulls.png"},
+  {"src": "/img/clips.png"},
+  {"src": "/img/grizz.png"},
+  {"src": "/img/kings.png"},
+  {"src": "/img/knicks.png"},
+  {"src": "/img/rockets.png"}
+]
+
 function App() {
+const [cards, setCards] = useState([])
+const
+
+  //shuffle cards
+  const shuffle = () => {
+    const shuffled = [...cardImgs, ...cardImgs]
+      .sort(()=> Math.random() - 0.5)
+      .map((card) => ({...card, id: Math.random()}))
+    
+      setCards(shuffled)
+
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Memory Match</h1>
+      <button>New Game</button>
     </div>
   );
 }
