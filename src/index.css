@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family:'Delicious Handrawn', cursive;
   font-size: 1.5em;
-  text-align: right;
+  text-align: relative;
   background: #17408B;
   color: #ffff;
 }
