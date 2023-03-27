@@ -17,6 +17,7 @@ const [cards, setCards] = useState([])
 const [turns, setTurns] = useState(0)
 const [choice1, setChoice1]=useState(null)
 const [choice2, setChoice2]=useState(null)
+const [disabled, setDisabled] = useState(false)
 
   //shuffle cards
   const shuffle = () => {
@@ -37,6 +38,7 @@ const handleChoice = (card) =>{
 //compare selected cards 
 useEffect(()=>{
   if (choice1 && choice2){
+    setDisabled(true)
     if(choice1.src === choice2.src){
       setCards(prevCards => {
         return prevCards.map(card => {
@@ -62,20 +64,26 @@ const resetTurn = () => {
     setChoice1(null)
     setChoice2(null)
     setTurns(prevTurns => prevTurns +1)
+    setDisabled(false)
 }
 
+//start game on page load
+useEffect(()=>{
+  shuffle()
+},[])
 
 return (
     <div className="App">
       <h1>NBA Memory Match</h1>
       <button onClick={shuffle}>New Game</button>
-
+      <p>Turns:{turns}</p>
       <div className = "card-grid">
         {cards.map(card =>(
           <SingleCard key ={card.id} 
           card = {card} 
           handleChoice={handleChoice}
-          flipped={card === choice1 || card === choice2 ||card.matched }/>
+          flipped={card === choice1 || card === choice2 ||card.matched }
+          disabled={disabled}/>
         ))}
       </div>
     </div>
