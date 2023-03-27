@@ -2,7 +2,7 @@ import'./singleCard.css'
 
 
 
-export default function SingleCard({card, handleChoice}){
+export default function SingleCard({card, handleChoice, flipped}){
 
     const handleClick = () => {
         handleChoice(card)
@@ -10,13 +10,16 @@ export default function SingleCard({card, handleChoice}){
 
     return (
         <div className='card'> 
-            <div>
+            <div className={flipped ? "flipped": ""}>
               <img className = "front" src={card.src} alt="card front"/>
               <img 
               className= 'back'   
-              src ="/img/nba3.png" 
+              src ="/img/NBA4.png" 
               alt="card back" 
-              onClick={handleClick}/>
+              onClick={handleClick}
+              width={150}
+              height={275}/>
+
             </div>
           </div>
     )
